@@ -1,6 +1,7 @@
 import DashboardPage from "./page";
 import { BarLoader } from "react-spinners";
 import { Suspense } from "react";
+import { motion } from "framer-motion";
 
 export default function Layout() {
   return (
@@ -9,6 +10,7 @@ export default function Layout() {
         <h1 className="text-6xl font-bold tracking-tight gradient-title">
           Dashboard
         </h1>
+        
       </div>
       <Suspense
         fallback={<BarLoader className="mt-4" width={"100%"} color="#9333ea" />}

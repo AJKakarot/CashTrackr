@@ -6,6 +6,7 @@ import {
   Globe,
   Zap,
 } from "lucide-react";
+import image from "next/image";
 
 // Stats Data
 export const statsData = [
@@ -14,7 +15,7 @@ export const statsData = [
     label: "Active Users",
   },
   {
-    value: "$2B+",
+    value: "₹2B+",
     label: "Transactions Tracked",
   },
   {
@@ -88,21 +89,21 @@ export const howItWorksData = [
 // Testimonials Data
 export const testimonialsData = [
   {
-    name: "Sarah Johnson",
+    name: "Ajeet Gupta",
     role: "Small Business Owner",
-    image: "https://randomuser.me/api/portraits/women/75.jpg",
+    image: "/ajeet.jpg",
     quote:
       "Welth has transformed how I manage my business finances. The AI insights have helped me identify cost-saving opportunities I never knew existed.",
   },
   {
-    name: "Michael Chen",
+    name: "Alok Singh",
     role: "Freelancer",
     image: "https://randomuser.me/api/portraits/men/75.jpg",
     quote:
       "The receipt scanning feature saves me hours each month. Now I can focus on my work instead of manual data entry and expense tracking.",
   },
   {
-    name: "Emily Rodriguez",
+    name: "Sonia Mehta",
     role: "Financial Advisor",
     image: "https://randomuser.me/api/portraits/women/74.jpg",
     quote:
