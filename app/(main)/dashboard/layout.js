@@ -1,5 +1,4 @@
 
-
 import DashboardPage from "./page";
 import { BarLoader } from "react-spinners";
 import { Suspense } from "react";
