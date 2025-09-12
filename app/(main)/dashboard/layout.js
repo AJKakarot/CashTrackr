@@ -3,16 +3,10 @@
 import DashboardPage from "./page";
 import { BarLoader } from "react-spinners";
 import { Suspense } from "react";
-import { motion } from "framer-motion";
 
 export default function Layout() {
   return (
-    <motion.div
-      className="px-5"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-    >
+  <>
       <div className="flex items-center justify-between mb-5">
         <h1 className="text-6xl font-bold tracking-tight gradient-title">
           Dashboard
@@ -23,6 +17,7 @@ export default function Layout() {
       >
         <DashboardPage />
       </Suspense>
-    </motion.div>
+      </>
+  
   );
 }
