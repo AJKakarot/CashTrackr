@@ -1,7 +1,8 @@
+
 # 💰 CashTrackr – Intelligent Finance Dashboard
 
 CashTrackr is a modern **Next.js 15** app that helps you manage budgets, track expenses, and gain AI-driven financial insights.  
-Built with **React, TailwindCSS, shadcn/ui, and Framer Motion**, it provides a sleek, responsive, and professional dashboard experience.  
+Built with **React, TailwindCSS, shadcn/ui, and Framer Motion**, it provides a sleek, responsive, and professional dashboard experience.
 
 ---
 
@@ -26,27 +27,45 @@ Built with **React, TailwindCSS, shadcn/ui, and Framer Motion**, it provides a s
 ---
 
 ## 📂 Project Structure
-├── app/
-│ ├── layout.js # Root layout
-│ ├── page.js # Landing page
-│ ├── dashboard/ # Dashboard route
-│ ├── not-found.js # Custom 404 page
-│
-├── components/
-│ ├── hero.jsx # Hero section
-│ ├── ui/ # shadcn UI components
-│
-├── data/
-│ ├── landing.js # Features, stats, testimonials
-│
-├── public/
-│ ├── banner.jpeg # Banner image
-│ ├── ajeet.jpg # Example testimonial avatar
-│
-└── README.md
-
-yaml
-Copy code
+```
+CashTrackr/
+├── app/                  # Next.js App Router pages
+│   ├── (auth)/           # Authentication pages
+│   ├── (main)/           # Main dashboard pages
+│   ├── api/              # API routes
+│   ├── layout.js         # Root layout
+│   ├── page.js           # Landing page
+│   ├── not-found.jsx     # 404 page
+├── components/           # Reusable UI components
+├── data/                 # Static data (features, stats, testimonials)
+├── emails/               # Email templates / helpers
+├── hooks/                # Custom React hooks
+├── lib/                  # Utilities, Prisma client, helpers
+├── prisma/               # Database schema & migrations
+├── public/               # Images and static assets
+├── styles/
+│   └── globals.css       # Global CSS / Tailwind setup
+├── scripts/              # Utility scripts
+│   ├── account.js
+│   ├── budget.js
+│   ├── dashboard.js
+│   ├── seed.js
+│   ├── send-email.js
+│   └── transaction.js
+├── .eslintrc.json
+├── .gitignore
+├── README.md
+├── components.json
+├── generate_commits.sh
+├── jsconfig.json
+├── middleware.js
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── progress.log
+└── tailwind.config.js
+```
 
 ---
 
@@ -54,46 +73,31 @@ Copy code
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/CashTrackr.git
+git clone https://github.com/AJKakarot/CashTrackr.git
 cd CashTrackr
-2️⃣ Install Dependencies
-bash
-Copy code
-npm install
-3️⃣ Run the Dev Server
-bash
-Copy code
-npm run dev
-Your app will be available at http://localhost:3000 🚀
+```
 
-4️⃣ Build for Production
-bash
-Copy code
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Run the Dev Server
+```bash
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000) 🚀
+
+### 4️⃣ Build for Production
+```bash
 npm run build
 npm start
-🎨 UI Previews
-Landing Page – Hero with animated text & CTA buttons.
+```
 
-Dashboard – Gradient heading, subtle animations, Suspense loader.
+---
 
-404 Page – Clean design with animations & return-home button.
-
-🧑‍💻 Contributing
-Contributions are welcome! Please open an issue or submit a PR.
-
-📜 License
-This project is licensed under the MIT License.
-
-🙌 Credits
-Built with Next.js + Tailwind
-
-UI components powered by shadcn/ui
-
-Animations via Framer Motion
-
-
-
-### Make sure to create a `.env` file with following variables -
+## 🔑 Environment Variables
+Create a `.env` file in the project root with the following variables:
 
 ```
 DATABASE_URL=
@@ -112,3 +116,20 @@ RESEND_API_KEY=
 
 ARCJET_KEY=
 ```
+
+---
+
+## 🧑‍💻 Contributing
+Contributions are welcome! Please open an issue or submit a PR.
+
+---
+
+## 📜 License
+This project is licensed under the MIT License.
+
+---
+
+## 🙌 Credits
+- Built with Next.js + Tailwind  
+- UI components powered by shadcn/ui  
+- Animations via Framer Motion  
