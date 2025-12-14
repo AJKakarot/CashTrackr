@@ -133,3 +133,4 @@ This project is licensed under the MIT License.
 - Built with Next.js + Tailwind  
 - UI components powered by shadcn/ui  
 - Animations via Framer Motion  
+# cashtrack
