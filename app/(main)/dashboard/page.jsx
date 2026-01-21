@@ -6,8 +6,13 @@ import { AccountCard } from "./_components/account-card";
 import { CreateAccountDrawer } from "@/components/create-account-drawer";
 import { BudgetProgress } from "./_components/budget-progress";
 import { Card, CardContent } from "@/components/ui/card";
-import { Plus } from "lucide-react";
+import { Plus, Users } from "lucide-react";
 import { DashboardOverview } from "./_components/transaction-overview";
+import { FinancialAssistant } from "./_components/financial-assistant";
+import { SpendingAlerts } from "./_components/spending-alerts";
+import { MonthlyReport } from "./_components/monthly-report";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function DashboardPage() {
   const [accounts, transactions] = await Promise.all([
@@ -30,6 +35,25 @@ export default async function DashboardPage() {
         initialBudget={budgetData?.budget}
         currentExpenses={budgetData?.currentExpenses || 0}
       />
+
+      {/* Quick Actions */}
+      <div className="flex gap-4">
+        <Link href="/split">
+          <Button className="gap-2">
+            <Users className="h-4 w-4" />
+            Split Expense
+          </Button>
+        </Link>
+      </div>
+
+      {/* AI Features Grid */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <FinancialAssistant />
+        <SpendingAlerts />
+      </div>
+
+      {/* Monthly Financial Report */}
+      <MonthlyReport />
 
       {/* Dashboard Overview */}
       <DashboardOverview

@@ -1,63 +1,66 @@
+"use client";
+
 import React from "react";
-import { Button } from "./ui/button";
-import { PenBox, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { checkUser } from "@/lib/checkUser";
+import { LayoutDashboard, Receipt, Wallet, Users } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Logo } from "./logo";
 
+const navigationItems = [
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Transactions", href: "/transaction/create", icon: Receipt },
+  { name: "Accounts", href: "/account", icon: Wallet },
+  { name: "Split Expense", href: "/split", icon: Users },
+];
 
-const Header = async () => {
-  await checkUser();
+const Header = () => {
+  const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
-      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-blue-600 tracking-tight">
-  Cash<span className="text-blue-900">Trackr</span>
-</h1>
+    <header className="fixed top-0 w-full bg-white z-50 border-b border-gray-200">
+      <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100">
+            <Logo className="w-6 h-6 text-black" />
+          </div>
+          <span className="hidden md:block text-xl font-bold text-gray-900">
+            CashTrackr
+          </span>
         </Link>
 
-        {/* Navigation Links - Different for signed in/out users */}
-        <div className="hidden md:flex items-center space-x-8">
-          <SignedOut>
-            <a href="#features" className="text-gray-600 hover:text-blue-600">
-              Features
-            </a>
-            <a
-              href="#testimonials"
-              className="text-gray-600 hover:text-blue-600"
-            >
-              Testimonials
-            </a>
-          </SignedOut>
-        </div>
+        {/* Navigation Pills - Only show when signed in */}
+        <SignedIn>
+          <div className="hidden md:flex items-center gap-2">
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
+              const Icon = item.icon;
+              
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2",
+                    isActive
+                      ? "bg-black text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  )}
+                >
+                  <Icon size={16} />
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
+        </SignedIn>
 
-        {/* Action Buttons */}
-        <div className="flex items-center space-x-4">
+        {/* Right Side Icons */}
+        <div className="flex items-center gap-3">
           <SignedIn>
-            <Link
-              href="/dashboard"
-              className="text-gray-600 hover:text-blue-600 flex items-center gap-2"
-            >
-              <Button variant="outline">
-                <LayoutDashboard size={18} />
-                <span className="hidden md:inline">Dashboard</span>
-              </Button>
-            </Link>
-            <a href="/transaction/create">
-              <Button className="flex items-center gap-2">
-                <PenBox size={18} />
-                <span className="hidden md:inline">Add Transaction</span>
-              </Button>
-            </a>
-          </SignedIn>
-          <SignedOut>
-            <SignInButton forceRedirectUrl="/dashboard">
-              <Button variant="outline">Login</Button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
+            {/* Profile */}
             <UserButton
               appearance={{
                 elements: {
@@ -66,6 +69,14 @@ const Header = async () => {
               }}
             />
           </SignedIn>
+
+          <SignedOut>
+            <SignInButton forceRedirectUrl="/dashboard">
+              <button className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm font-medium transition-colors">
+                Login
+              </button>
+            </SignInButton>
+          </SignedOut>
         </div>
       </nav>
     </header>

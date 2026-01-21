@@ -14,30 +14,15 @@ export function ReceiptScanner({ onScanComplete }) {
     loading: scanReceiptLoading,
     fn: scanReceiptFn,
     data: scannedData,
-    error,
   } = useFetch(scanReceipt);
 
   const handleReceiptScan = async (file) => {
-    if (!file) return;
-
-    // Validate file type
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload a valid image file.");
-      return;
-    }
-
-    // Validate file size
     if (file.size > 5 * 1024 * 1024) {
       toast.error("File size should be less than 5MB");
       return;
     }
 
-    try {
-      await scanReceiptFn(file);
-    } catch (err) {
-      toast.error("Failed to scan receipt. Please try again.");
-      console.error("Receipt scan error:", err);
-    }
+    await scanReceiptFn(file);
   };
 
   useEffect(() => {
@@ -45,7 +30,7 @@ export function ReceiptScanner({ onScanComplete }) {
       onScanComplete(scannedData);
       toast.success("Receipt scanned successfully");
     }
-  }, [scanReceiptLoading, scannedData, onScanComplete]);
+  }, [scanReceiptLoading, scannedData]);
 
   return (
     <div className="flex items-center gap-4">
@@ -60,7 +45,6 @@ export function ReceiptScanner({ onScanComplete }) {
           if (file) handleReceiptScan(file);
         }}
       />
-
       <Button
         type="button"
         variant="outline"
