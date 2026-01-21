@@ -134,3 +134,4 @@ This project is licensed under the MIT License.
 - UI components powered by shadcn/ui  
 - Animations via Framer Motion  
 # cashtrack
+# ai-genrated-tracker
